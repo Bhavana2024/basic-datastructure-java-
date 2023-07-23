@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Solution {
+
+    static boolean isAnagram(String a, String b) {
+        // Complete the function
+        
+        if (a.length() != b.length()) return false;
+        
+        String A = a.toUpperCase(), B = b.toUpperCase();
+        
+        int contA[] = new int[26], contB[] = new int[26]; 
+        
+        for (int i = 0; i<contA.length; i++) {
+            contA[i] = 0;
+            contB[i] = 0;
+        }
+        
+        for (int i = 0; i<A.length(); i++) {
+            contA[A.charAt(i)%65]++;
+            contB[B.charAt(i)%65]++;
+        }
+        
+        for (int i=0; i<contA.length; i++) {
+            if (contA[i] != contB[i]) return false;
+        }
+        return true;
+
+    }
+
+    public static void main(String[] args) {
+    
+        Scanner scan = new Scanner(System.in);
+        String a = scan.next();
+        String b = scan.next();
+        scan.close();
+        boolean ret = isAnagram(a, b);
+        System.out.println( (ret) ? "Anagrams" : "Not Anagrams" );
+    }
+}
